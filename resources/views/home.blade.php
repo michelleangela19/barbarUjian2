@@ -25,11 +25,21 @@
         <div class="flex mt-4">
             <div class="w-1/2">
                 @foreach ($books as $book)
-                    <a href="/detail/{{ $book->id }}">
+                    <a href="/{{ $user->id }}/detail/{{ $book->id }}">
                         <div class="bg-gray-200 py-4 pl-4 border-solid border border-current">
                             <h1 class="text-2xl">{{ $book->title }}</h1>
+                            <form action="/buyBooks" method="POST" class="w-12 bg-red-500 text-center text-white">
+                                @csrf {{-- /token di laravel biar aman --}}
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                <input type="hidden" name="book_id" value="{{ $book->id }}">
+
+                                <button type="submit">
+                                    BUY
+                                </button>
+                            </form>
                         </div>
                     </a>
+
                 @endforeach
             </div>
             <div class="w-1/2">
@@ -41,8 +51,6 @@
             </div>
         </div>
 
-        <form action="/buyBooks" method="POST" class="my-12 w-12 bg-red-500 text-center  text-white">
-            BUY
-        </form>
+
     </div>
 @endsection

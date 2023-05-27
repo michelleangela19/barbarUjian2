@@ -34,7 +34,10 @@
             @endif
         </div>
         <li class="">
-          <a class="text-blue-500 hover:text-blue-800" href="/contact">Contact</a>
+          <a class="text-blue-500 hover:text-blue-800" href="/{{ $user->id }}/contact">Contact</a>
         </li>
+        <li class="">
+            <a class="text-blue-500 hover:text-blue-800" href="/{{ $user->id }}/transaction">My_Transaction</a>
+          </li>
     </ul>
 </div>

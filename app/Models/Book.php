@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Detail;
+use App\Models\Transaction;
 
 class Book extends Model
 {
@@ -24,5 +25,9 @@ class Book extends Model
 
     public function detail(){
         return $this->hasOne(Detail::class);
+    }
+
+    public function transaction(){
+        return $this->hasMany(transaction::class);
     }
 }

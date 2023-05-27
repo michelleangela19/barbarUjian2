@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\TransactionController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,14 @@ use App\Http\Controllers\DetailController;
 Route::get('/{id}', [BookController::class, 'index']);
 
 Route::get('/{id}/category/{idCategory}', [CategoryController::class, 'show']);
-Route::get('/detail/{id}', [DetailController::class, 'show']);
-Route::get('/contact', function(){
-    return view("contact");
+Route::get('/{id}/detail/{idBook}', [DetailController::class, 'show']);
+// Route::get('/{id}/contact', [BookController::class, 'contact'] );
+
+Route::get('/{id}/contact', function($id){
+    $user = User::find($id);
+
+    return view("contact", compact("user"));
 });
+
+Route::post('/buyBooks', [TransactionController::class, 'store']);
+Route::get('/{id}/transaction', [TransactionController::class, 'show']);
